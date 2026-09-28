@@ -1,0 +1,723 @@
+[
+  {
+    "id": "IV-ECE-A",
+    "label": "IV ECE-A",
+    "year": 4,
+    "homeRoom": "IST-225",
+    "homeHalf": "FULL",
+    "periodGrid": "Y2_4",
+    "semesterLabel": "VII Semester",
+    "enabled": true,
+    "source": "IV_ECE_A.pdf",
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "A", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "D", "rooms": ["IST-225"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "D", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "B", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F", "rooms": ["IST-225"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "B", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "LAB", "rooms": ["IST-108"], "kind": "LAB" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "E", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F", "rooms": ["IST-225"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "F", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "E", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "B", "rooms": ["IST-225"], "kind": "THEORY" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "D", "rooms": ["IST-225"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "E", "rooms": ["IST-225"], "kind": "THEORY" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Behavioural Psychology" },
+      "B": { "name": "Wireless Comm & Antenna Systems" },
+      "C": { "name": "Computer Comm & Network Security" },
+      "D": { "name": "Semiconductor Memory Design" },
+      "E": { "name": "Scripting Language for EDA" },
+      "F": { "name": "Machine Learning for All" },
+      "LAB": { "name": "CCNS Lab" }
+    }
+  },
+  {
+    "id": "IV-ECE-B",
+    "label": "IV ECE-B",
+    "year": 4,
+    "homeRoom": "IST-227",
+    "homeHalf": "FULL",
+    "periodGrid": "Y2_4",
+    "semesterLabel": "VII Semester",
+    "enabled": true,
+    "source": "IV_ECE_B.pdf",
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "E", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F", "rooms": ["IST-227"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "E", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "F", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "B", "rooms": ["IST-227"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "D", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "A", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "B", "rooms": ["IST-227"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "D", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "B", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "LAB", "rooms": ["IST-108"], "kind": "LAB" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "A", "rooms": ["IST-227"], "kind": "THEORY" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "E", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "D", "rooms": ["IST-227"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "F", "rooms": ["IST-227"], "kind": "THEORY" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Behavioural Psychology" },
+      "B": { "name": "Wireless Comm & Antenna Systems" },
+      "C": { "name": "Computer Comm & Network Security" },
+      "D": { "name": "Semiconductor Memory Design" },
+      "E": { "name": "Scripting Language for EDA" },
+      "F": { "name": "Machine Learning for All" },
+      "LAB": { "name": "CCNS Lab" }
+    }
+  },
+  {
+    "id": "III-ECE-A",
+    "label": "III ECE-A",
+    "year": 3,
+    "homeRoom": "IST-518",
+    "homeHalf": "FN",
+    "periodGrid": "Y2_4",
+    "semesterLabel": "V Semester",
+    "enabled": true,
+    "source": "III_ECE_A.pdf",
+    "duplicateSource": "III_ECE_A (1).pdf",
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "E", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 3, "slot": "B", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "A", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "G", "rooms": ["IST-625"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "H", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "D", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "B", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "B-Proj", "rooms": ["IST-518"], "kind": "PROJECT" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "G", "rooms": ["IST-625"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "D", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "LAB", "rooms": ["IST-108", "IST-309"], "kind": "LAB" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "A", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "E", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "C", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F", "rooms": ["IST-518"], "kind": "THEORY" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "D", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "E", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "C", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "LAB", "rooms": ["IST-108", "IST-309"], "kind": "LAB" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Discrete Mathematics" },
+      "B": { "name": "Microprocessor, Microcontroller & Interfacing" },
+      "C": { "name": "VLSI Design & Technology" },
+      "D": { "name": "System and Network on Chip" },
+      "E": { "name": "Machine Learning for All" },
+      "F": { "name": "Community Connect" },
+      "G": { "name": "Analytical & Logical Thinking (CDC-625)" },
+      "H": { "name": "Indian Art Form" },
+      "B-Proj": { "name": "Mini Project" },
+      "LAB": { "name": "VLSI/Microprocessor Lab" }
+    }
+  },
+  {
+    "id": "III-ECE-B",
+    "label": "III ECE-B",
+    "year": 3,
+    "homeRoom": "IST-518",
+    "homeHalf": "AN",
+    "periodGrid": "Y2_4",
+    "semesterLabel": "V Semester",
+    "enabled": true,
+    "source": "III_ECE_B.pdf",
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "LAB", "rooms": ["IST-108", "IST-309"], "kind": "LAB" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "E", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "A", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "D", "rooms": ["IST-518"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "G", "rooms": ["IST-625"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "F", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "D", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "C", "rooms": ["IST-518"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "G", "rooms": ["IST-625"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "B-Proj", "rooms": ["IST-518"], "kind": "PROJECT" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "A", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "H", "rooms": ["IST-518"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "LAB", "rooms": ["IST-108", "IST-309"], "kind": "LAB" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "A", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "C", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "E", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "F", "rooms": ["IST-518"], "kind": "THEORY" }
+      ],
+      "FRI": [
+        { "startPeriod": 6, "endPeriod": 6, "slot": "C", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "A", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "E", "rooms": ["IST-518"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "D", "rooms": ["IST-518"], "kind": "THEORY" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Discrete Mathematics" },
+      "B": { "name": "Microprocessor, Microcontroller & Interfacing" },
+      "C": { "name": "VLSI Design & Technology" },
+      "D": { "name": "System and Network on Chip" },
+      "E": { "name": "Machine Learning for All" },
+      "F": { "name": "Community Connect" },
+      "G": { "name": "Analytical & Logical Thinking (CDC-625)" },
+      "H": { "name": "Indian Art Form" },
+      "B-Proj": { "name": "Mini Project" },
+      "LAB": { "name": "VLSI/Microprocessor Lab" }
+    }
+  },
+  {
+    "id": "III-ECE-DS",
+    "label": "III ECE-DS",
+    "year": 3,
+    "homeRoom": "IST-519",
+    "homeHalf": "FN",
+    "periodGrid": "Y2_4",
+    "semesterLabel": "V Semester",
+    "enabled": true,
+    "source": "III_ECE_DS.pdf",
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "E", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "B", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "C", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "A", "rooms": ["IST-519"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "B", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "D", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "LAB", "rooms": ["IST-108", "IST-107"], "kind": "LAB" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "H", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "B", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "A", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "C", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "G", "rooms": ["IST-625"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "A", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "D", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "E", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F", "rooms": ["IST-519"], "kind": "THEORY" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "D", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "E", "rooms": ["IST-519"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "B-Proj", "rooms": ["IST-519"], "kind": "PROJECT" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "G", "rooms": ["IST-625"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "LAB", "rooms": ["IST-108", "IST-107"], "kind": "LAB" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Discrete Mathematics" },
+      "B": { "name": "Microprocessor, Microcontroller & Interfacing" },
+      "C": { "name": "VLSI Design & Technology" },
+      "D": { "name": "Machine Learning for All" },
+      "E": { "name": "Database Design & Management" },
+      "F": { "name": "Community Connect" },
+      "G": { "name": "Analytical & Logical Thinking (CDC-625)" },
+      "H": { "name": "Indian Art Form" },
+      "B-Proj": { "name": "Mini Project" },
+      "LAB": { "name": "Devices / VLSI Lab" }
+    }
+  },
+  {
+    "id": "II-ECE-DS-A",
+    "label": "II ECE-DS A",
+    "year": 2,
+    "homeRoom": "IST-416",
+    "homeHalf": "FN",
+    "periodGrid": "Y2_4",
+    "semesterLabel": "III Semester",
+    "enabled": true,
+    "source": "II_ECE_DS_A.pdf",
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "E", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 4, "slot": "I", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "G", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "LAB", "rooms": ["IST-309", "IST-107"], "kind": "LAB" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "E", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "D", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "G", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "H", "rooms": ["TB-106"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "A", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "B", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "C", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "D", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "H", "rooms": ["TB-106"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "B", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "C", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "A", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "LAB", "rooms": ["IST-309", "IST-107"], "kind": "LAB" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "D", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "B", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "E", "rooms": ["IST-416"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "C", "rooms": ["IST-416"], "kind": "THEORY" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Transforms & BVP" },
+      "B": { "name": "Solid State Devices" },
+      "C": { "name": "Computer Organization & Architecture" },
+      "D": { "name": "Digital Logic Design" },
+      "E": { "name": "EM Theory & Interference" },
+      "F": { "name": "Professional Ethics" },
+      "G": { "name": "Universal Human Values-II" },
+      "H": { "name": "Verbal Reasoning (CDC-TB-106)" },
+      "I": { "name": "Social Engineering" },
+      "LAB": { "name": "Devices & Digital IC Lab" }
+    }
+  },
+  {
+    "id": "II-ECE-DS-B",
+    "label": "II ECE-DS B",
+    "year": 2,
+    "homeRoom": "IST-411",
+    "homeHalf": "AN",
+    "periodGrid": "Y2_4",
+    "semesterLabel": "III Semester",
+    "enabled": true,
+    "source": "II_ECE_DS_B.pdf",
+    "days": {
+      "MON": [
+        { "startPeriod": 3, "endPeriod": 4, "slot": "LAB", "rooms": ["IST-309", "IST-107"], "kind": "LAB" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "D", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "C", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "I", "rooms": ["IST-411"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "LAB", "rooms": ["IST-309", "IST-107"], "kind": "LAB" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "C", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "D", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "E", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "A", "rooms": ["IST-411"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "G", "rooms": ["IST-401"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "I", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "E", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "A", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "D", "rooms": ["IST-411"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "G", "rooms": ["IST-401"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 4, "slot": "H", "rooms": ["TB-106"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "A", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "C", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "B", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "E", "rooms": ["IST-411"], "kind": "THEORY" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "H", "rooms": ["TB-106"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "F", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "A", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "B", "rooms": ["IST-411"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "C", "rooms": ["IST-411"], "kind": "THEORY" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Transforms & BVP" },
+      "B": { "name": "Solid State Devices" },
+      "C": { "name": "Computer Organization & Architecture" },
+      "D": { "name": "Digital Logic Design" },
+      "E": { "name": "EM Theory & Interference" },
+      "F": { "name": "Professional Ethics" },
+      "G": { "name": "Universal Human Values-II" },
+      "H": { "name": "Verbal Reasoning (CDC-TB-106)" },
+      "I": { "name": "Social Engineering" },
+      "LAB": { "name": "Devices & Digital IC Lab" }
+    }
+  },
+  {
+    "id": "II-BME",
+    "label": "II BME",
+    "year": 2,
+    "homeRoom": "IST-602",
+    "homeHalf": "FN",
+    "periodGrid": "Y2_4",
+    "semesterLabel": "III Semester",
+    "enabled": true,
+    "source": "II_BME.pdf",
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "E", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "C", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 4, "slot": "I", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "LAB", "rooms": ["IST-107", "IST-309"], "kind": "LAB" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "E", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "H", "rooms": ["TB-106"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "D", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "H", "rooms": ["TB-106"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "G", "rooms": ["IST-602"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "E", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "D", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "LAB", "rooms": ["IST-107", "IST-309"], "kind": "LAB" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "F", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "C", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "D", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "G", "rooms": ["IST-602"], "kind": "THEORY" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Transforms & BVP" },
+      "B": { "name": "Biomedical Signals & Systems" },
+      "C": { "name": "Electric & Electronic Circuits" },
+      "D": { "name": "Digital Logic for Medical Systems" },
+      "E": { "name": "Medical Physics" },
+      "F": { "name": "Professional Ethics" },
+      "G": { "name": "Universal Human Values-II" },
+      "H": { "name": "Verbal Reasoning (TB-106)" },
+      "I": { "name": "Social Engineering" },
+      "LAB": { "name": "DLMS / EEC Lab" }
+    }
+  },
+  {
+    "id": "I-ECE-A",
+    "label": "I ECE-A",
+    "year": 1,
+    "homeRoom": "IST-602",
+    "homeHalf": "FULL",
+    "periodGrid": "Y1",
+    "semesterLabel": "I/II Semester (Provisional 2024-25)",
+    "enabled": false,
+    "source": "Year_I_Combined.pdf",
+    "verified": false,
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "E", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "Che Lab", "rooms": ["CHE-LAB"], "kind": "LAB", "verified": false },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "F", "rooms": ["IST-710"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "CDC", "rooms": ["IST-710"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "D", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 9, "slot": "Workshop", "rooms": ["WORKSHOP"], "kind": "LAB", "verified": false }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "E", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "D", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "PPS Lab", "rooms": ["IST-618"], "kind": "LAB" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "PCB Lab", "rooms": ["IST-108"], "kind": "LAB" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 3, "slot": "German", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "CDC", "rooms": ["IST-510"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "NSS", "rooms": ["IST-201"], "kind": "OTHER" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "D", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "C", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "F", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 9, "slot": "German", "rooms": ["IST-626"], "kind": "THEORY" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Engineering Mathematics" },
+      "B": { "name": "Physics for Electronics" },
+      "C": { "name": "Basic Electrical Engineering" },
+      "D": { "name": "Programming in C" },
+      "E": { "name": "Engineering Chemistry" },
+      "F": { "name": "Professional Communication" },
+      "German": { "name": "Foreign Language: German" },
+      "CDC": { "name": "Career Development Centre" },
+      "Che Lab": { "name": "Chemistry Laboratory" },
+      "Workshop": { "name": "Engineering Workshop" },
+      "PPS Lab": { "name": "PPS Laboratory" },
+      "PCB Lab": { "name": "PCB Design Lab" },
+      "NSS": { "name": "National Service Scheme" }
+    }
+  },
+  {
+    "id": "I-ECE-B-EEE",
+    "label": "I ECE-B & EEE",
+    "year": 1,
+    "homeRoom": "IST-602",
+    "homeHalf": "FULL",
+    "periodGrid": "Y1",
+    "semesterLabel": "I/II Semester (Provisional 2024-25)",
+    "enabled": false,
+    "source": "Year_I_Combined.pdf",
+    "verified": false,
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "CDC", "rooms": ["IST-609"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "F/G", "rooms": ["IST-710", "IST-520"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 4, "slot": "Che Lab", "rooms": ["CHE-LAB"], "kind": "LAB", "verified": false },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "E", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 4, "slot": "Workshop", "rooms": ["WORKSHOP"], "kind": "LAB", "verified": false },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "C", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "D", "rooms": ["IST-602"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "F/G", "rooms": ["IST-710", "IST-520"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "PPS Lab", "rooms": ["IST-617"], "kind": "LAB" },
+        { "startPeriod": 3, "endPeriod": 4, "slot": "CDC", "rooms": ["IST-510"], "kind": "THEORY" },
+        { "startPeriod": 5, "endPeriod": 5, "slot": "PPS Lab", "rooms": ["IST-618"], "kind": "LAB" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "E", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "D", "rooms": ["IST-602"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "NSS", "rooms": ["IST-201"], "kind": "OTHER" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "C", "rooms": ["IST-626"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "A", "rooms": ["IST-710"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "D", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 9, "slot": "German", "rooms": ["IST-602"], "kind": "THEORY" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "PCB/EC Lab", "rooms": ["IST-617"], "kind": "LAB" },
+        { "startPeriod": 4, "endPeriod": 5, "slot": "German", "rooms": ["IST-626"], "kind": "THEORY", "verified": false },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "B", "rooms": ["IST-602"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "A", "rooms": ["IST-602"], "kind": "THEORY" }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Engineering Mathematics" },
+      "B": { "name": "Physics for Electronics" },
+      "C": { "name": "Basic Electrical Engineering" },
+      "D": { "name": "Programming in C" },
+      "E": { "name": "Engineering Chemistry" },
+      "F/G": { "name": "Professional Communication / Elective" },
+      "German": { "name": "Foreign Language: German" },
+      "CDC": { "name": "Career Development Centre" },
+      "Che Lab": { "name": "Chemistry Laboratory" },
+      "Workshop": { "name": "Engineering Workshop" },
+      "PPS Lab": { "name": "PPS Laboratory" },
+      "PCB/EC Lab": { "name": "PCB/EC Lab" },
+      "NSS": { "name": "National Service Scheme" }
+    }
+  },
+  {
+    "id": "I-ECE-DS",
+    "label": "I ECE-DS",
+    "year": 1,
+    "homeRoom": "IST-502",
+    "homeHalf": "FULL",
+    "periodGrid": "Y1",
+    "semesterLabel": "I/II Semester (Provisional 2024-25)",
+    "enabled": false,
+    "source": "Year_I_Combined.pdf",
+    "verified": false,
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "F", "rooms": ["IST-710"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "CDC", "rooms": ["CDC-UNMAPPED"], "kind": "THEORY", "verified": false },
+        { "startPeriod": 3, "endPeriod": 4, "slot": "PCB Lab", "rooms": ["IST-617"], "kind": "LAB" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "E", "rooms": ["IST-502"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "B", "rooms": ["IST-502"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "A", "rooms": ["IST-502"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "Che Lab", "rooms": ["CHE-LAB"], "kind": "LAB", "verified": false },
+        { "startPeriod": 3, "endPeriod": 4, "slot": "NSS", "rooms": ["IST-201"], "kind": "OTHER" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "C", "rooms": ["IST-502"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-502"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "A", "rooms": ["IST-502"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "D", "rooms": ["IST-502"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "CDC", "rooms": ["IST-510"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "A", "rooms": ["IST-710"], "kind": "THEORY" },
+        { "startPeriod": 5, "endPeriod": 6, "slot": "PPS Lab", "rooms": ["IST-617"], "kind": "LAB" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-502"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "E", "rooms": ["IST-502"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "D", "rooms": ["IST-502"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "F", "rooms": ["IST-710"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "A", "rooms": ["IST-510"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "D", "rooms": ["IST-710"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 5, "slot": "German", "rooms": ["IST-502"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "C", "rooms": ["IST-502"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "B", "rooms": ["IST-502"], "kind": "THEORY" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 3, "slot": "German", "rooms": ["IST-626"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "PPS Lab", "rooms": ["PPS-LAB-UNMAPPED"], "kind": "LAB", "verified": false },
+        { "startPeriod": 6, "endPeriod": 9, "slot": "Workshop", "rooms": ["WORKSHOP"], "kind": "LAB", "verified": false }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Engineering Mathematics" },
+      "B": { "name": "Physics for Electronics" },
+      "C": { "name": "Basic Electrical Engineering" },
+      "D": { "name": "Programming in C" },
+      "E": { "name": "Engineering Chemistry" },
+      "F": { "name": "Professional Communication" },
+      "German": { "name": "Foreign Language: German" },
+      "CDC": { "name": "Career Development Centre" },
+      "Che Lab": { "name": "Chemistry Laboratory" },
+      "Workshop": { "name": "Engineering Workshop" },
+      "PPS Lab": { "name": "PPS Laboratory" },
+      "PCB Lab": { "name": "PCB Design Lab" },
+      "NSS": { "name": "National Service Scheme" }
+    }
+  },
+  {
+    "id": "I-BIOTECH-BME",
+    "label": "I Biotech-B / Biomedical",
+    "year": 1,
+    "homeRoom": "IST-702",
+    "homeHalf": "FULL",
+    "periodGrid": "Y1",
+    "semesterLabel": "I/II Semester (Provisional 2024-25)",
+    "enabled": false,
+    "source": "Year_I_Combined.pdf",
+    "verified": false,
+    "days": {
+      "MON": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "C", "rooms": ["IST-520"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 3, "slot": "Yoga", "rooms": ["YOGA-HALL"], "kind": "OTHER", "verified": false },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F/G", "rooms": ["IST-710", "IST-520"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 7, "slot": "E", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "A", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "B", "rooms": ["IST-702"], "kind": "THEORY" }
+      ],
+      "TUE": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "CDC", "rooms": ["IST-710"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "C", "rooms": ["IST-520"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "F", "rooms": ["IST-710"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "A", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "D", "rooms": ["IST-702"], "kind": "THEORY" }
+      ],
+      "WED": [
+        { "startPeriod": 1, "endPeriod": 4, "slot": "Workshop", "rooms": ["WORKSHOP"], "kind": "LAB", "verified": false },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "D", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 7, "slot": "B", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 8, "slot": "E", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 9, "endPeriod": 9, "slot": "D", "rooms": ["IST-702"], "kind": "THEORY" }
+      ],
+      "THU": [
+        { "startPeriod": 1, "endPeriod": 2, "slot": "Che Lab", "rooms": ["CHE-LAB"], "kind": "LAB", "verified": false },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "A", "rooms": ["IST-710"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 4, "slot": "C/G", "rooms": ["IST-510", "IST-520"], "kind": "THEORY" },
+        { "startPeriod": 6, "endPeriod": 6, "slot": "B", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 7, "endPeriod": 9, "slot": "Japanese", "rooms": ["IST-702"], "kind": "THEORY" }
+      ],
+      "FRI": [
+        { "startPeriod": 1, "endPeriod": 1, "slot": "F", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 2, "endPeriod": 2, "slot": "CDC", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 3, "endPeriod": 3, "slot": "A", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 4, "endPeriod": 5, "slot": "Japanese", "rooms": ["IST-702"], "kind": "THEORY" },
+        { "startPeriod": 8, "endPeriod": 9, "slot": "PPS Lab", "rooms": ["PPS-LAB-UNMAPPED"], "kind": "LAB", "verified": false }
+      ]
+    },
+    "slots": {
+      "A": { "name": "Engineering Mathematics" },
+      "B": { "name": "Physics for Life Sciences" },
+      "C": { "name": "Basic Electrical Engineering" },
+      "D": { "name": "Programming in C" },
+      "E": { "name": "Engineering Chemistry" },
+      "F": { "name": "Professional Communication" },
+      "Japanese": { "name": "Foreign Language: Japanese" },
+      "CDC": { "name": "Career Development Centre" },
+      "Che Lab": { "name": "Chemistry Laboratory" },
+      "Workshop": { "name": "Engineering Workshop" },
+      "Yoga": { "name": "Yoga & Wellness" },
+      "PPS Lab": { "name": "PPS Laboratory" }
+    }
+  }
+]
