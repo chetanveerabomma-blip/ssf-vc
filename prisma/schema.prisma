@@ -1,0 +1,148 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String        @id @default(cuid())
+  regNo        String        @unique
+  name         String
+  email        String        @unique
+  passwordHash String
+  role         String        @default("STUDENT") // STUDENT | ADMIN
+  sectionId    String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  section      Section?      @relation(fields: [sectionId], references: [id])
+  snapshots    Snapshot[]
+  auditLogs    AuditLog[]
+  leaves       LeaveEntry[]
+  chatSessions ChatSession[]
+}
+
+model Section {
+  id        String    @id
+  year      Int       // 1, 2, 3, 4
+  branch    String    // ECE, ECE-DS, BME
+  label     String    // e.g. "Year II - ECE Section A"
+  users     User[]
+  subjects  Subject[]
+  createdAt DateTime  @default(now())
+}
+
+model Subject {
+  id                String   @id @default(cuid())
+  code              String
+  name              String
+  type              String   // THEORY | LAB
+  periodsPerSession Int      @default(1)
+  sectionId         String
+  section           Section  @relation(fields: [sectionId], references: [id])
+
+  @@unique([sectionId, code])
+}
+
+model Snapshot {
+  id           String   @id @default(cuid())
+  userId       String
+  date         String   // ISO string or YYYY-MM-DD
+  planningDate String
+  payload      String   // JSON payload of current subjects & calculations
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model LeaveEntry {
+  id              String   @id @default(cuid())
+  userId          String
+  type            String   // OD | MEDICAL | ABSENT
+  startDate       String   // YYYY-MM-DD
+  endDate         String   // YYYY-MM-DD
+  isHalfDay       Boolean  @default(false)
+  halfDayType     String?  // MORNING | AFTERNOON
+  scope           String   @default("ALL") // ALL or comma-separated subject codes
+  medicalApproved Boolean  @default(false)
+  isAlreadyTaken  Boolean  @default(false) // Already taken vs Planned
+  note            String?
+  createdAt       DateTime @default(now())
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ChatSession {
+  id        String        @id @default(cuid())
+  userId    String
+  title     String        @default("Campus Advisory")
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages  ChatMessage[]
+}
+
+model ChatMessage {
+  id          String      @id @default(cuid())
+  sessionId   String
+  role        String      // user | assistant | tool
+  content     String
+  resultCards String?     // JSON string of structured result cards
+  createdAt   DateTime    @default(now())
+  session     ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  details   String
+  userId    String?
+  timestamp DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  regNo     String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model RoomMeta {
+  id        String   @id
+  label     String
+  floor     Int?
+  type      String   // CLASSROOM | LAB | CDC | OTHER
+  ac        Boolean?
+  capacity  Int?
+  notes     String?
+  updatedAt DateTime @updatedAt
+}
+
+model BuildingLayout {
+  id            String   @id
+  floor         Int      @unique
+  roomsJson     String   // JSON array of { roomId, x, z, w, d }
+  corridorsJson String?  // JSON array of corridors
+  stairsJson    String?  // JSON array of stairs
+  liftsJson     String?  // JSON array of lifts
+  updatedAt     DateTime @updatedAt
+}
+
+model TimetableOverride {
+  id          String   @id @default(cuid())
+  type        String   // DAY_ORDER | CANCELLATION | ROOM_CLOSURE
+  date        String   // YYYY-MM-DD
+  payloadJson String   // JSON serialized override definition
+  createdAt   DateTime @default(now())
+}
+
+model Holiday {
+  id        String   @id @default(cuid())
+  date      String   @unique // YYYY-MM-DD
+  name      String
+  type      String   @default("PUBLIC")
+  createdAt DateTime @default(now())
+}
