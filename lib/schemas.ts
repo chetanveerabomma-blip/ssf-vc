@@ -85,6 +85,74 @@ export const RoomStatusEnum = z.enum([
   "OCCUPIED",
   "DATA_CONFLICT",
   "NO_CLASSES",
+  "CLOSED",
 ]);
 
 export type RoomStatus = z.infer<typeof RoomStatusEnum>;
+
+export const DayOrderSchema = z.object({
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be YYYY-MM-DD")
+    .refine((d) => d >= "2026-08-29" && d <= "2026-11-29", {
+      message: "Date must be within the active semester (2026-08-29 to 2026-11-29)",
+    }),
+  followsDay: z.enum(["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]),
+  note: z.string().optional(),
+});
+
+export type DayOrder = z.infer<typeof DayOrderSchema>;
+
+export const CancellationSchema = z.object({
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be YYYY-MM-DD")
+    .refine((d) => d >= "2026-08-29" && d <= "2026-11-29", {
+      message: "Date must be within the active semester (2026-08-29 to 2026-11-29)",
+    }),
+  sectionId: z.string().min(1, "Section ID is required"),
+  periods: z.array(z.number().int().min(1).max(9)).min(1, "At least one period required"),
+  reason: z.string().optional(),
+});
+
+export type Cancellation = z.infer<typeof CancellationSchema>;
+
+export const RoomClosureSchema = z
+  .object({
+    roomId: z.string().min(1, "Room ID is required"),
+    from: z
+      .string()
+      .regex(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/, "From timestamp must be YYYY-MM-DDTHH:mm")
+      .refine(
+        (d) => {
+          const datePart = d.split("T")[0];
+          return datePart >= "2026-08-29" && datePart <= "2026-11-29";
+        },
+        { message: "From date must be within active semester (2026-08-29 to 2026-11-29)" }
+      ),
+    to: z
+      .string()
+      .regex(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/, "To timestamp must be YYYY-MM-DDTHH:mm")
+      .refine(
+        (d) => {
+          const datePart = d.split("T")[0];
+          return datePart >= "2026-08-29" && datePart <= "2026-11-29";
+        },
+        { message: "To date must be within active semester (2026-08-29 to 2026-11-29)" }
+      ),
+    reason: z.string().optional(),
+  })
+  .refine((data) => data.from <= data.to, {
+    message: "'from' timestamp must be earlier than or equal to 'to' timestamp",
+    path: ["to"],
+  });
+
+export type RoomClosure = z.infer<typeof RoomClosureSchema>;
+
+export const OverridesDataSchema = z.object({
+  dayOrders: z.array(DayOrderSchema).default([]),
+  cancellations: z.array(CancellationSchema).default([]),
+  roomClosures: z.array(RoomClosureSchema).default([]),
+});
+
+export type OverridesData = z.infer<typeof OverridesDataSchema>;

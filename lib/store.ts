@@ -1,7 +1,8 @@
 import { create } from "zustand";
-import { Room, RoomStatus } from "@/lib/schemas";
+import { Room, RoomStatus, OverridesData, DayOrder, Cancellation, RoomClosure } from "@/lib/schemas";
 import roomsData from "@/data/rooms.json";
 import sectionsData from "@/data/sections.json";
+import overridesData from "@/data/overrides.json";
 
 export interface FilterState {
   floor: number | null; // null means all floors
@@ -28,6 +29,7 @@ interface FloorManagerState {
   // Data customization
   rooms: Room[];
   enabledSections: Record<string, boolean>;
+  overrides: OverridesData;
 
   // Actions
   setDate: (date: string) => void;
@@ -39,6 +41,13 @@ interface FloorManagerState {
   resetFilters: () => void;
   updateRoom: (room: Room) => void;
   toggleSection: (sectionId: string, enabled: boolean) => void;
+  setOverrides: (overrides: OverridesData) => void;
+  addDayOrder: (dayOrder: DayOrder) => void;
+  deleteDayOrder: (index: number) => void;
+  addCancellation: (cancellation: Cancellation) => void;
+  deleteCancellation: (index: number) => void;
+  addRoomClosure: (roomClosure: RoomClosure) => void;
+  deleteRoomClosure: (index: number) => void;
 }
 
 const initialEnabledSections: Record<string, boolean> = {};
@@ -62,6 +71,7 @@ export const useFloorStore = create<FloorManagerState>((set) => ({
   },
   rooms: roomsData as unknown as Room[],
   enabledSections: initialEnabledSections,
+  overrides: overridesData as unknown as OverridesData,
 
   setDate: (date) => set({ selectedDate: date, isLiveNow: false }),
   setTime: (time) => set({ selectedTime: time, isLiveNow: false }),
@@ -88,5 +98,48 @@ export const useFloorStore = create<FloorManagerState>((set) => ({
   toggleSection: (sectionId, enabled) =>
     set((state) => ({
       enabledSections: { ...state.enabledSections, [sectionId]: enabled },
+    })),
+  setOverrides: (overrides) => set({ overrides }),
+  addDayOrder: (dayOrder) =>
+    set((state) => ({
+      overrides: {
+        ...state.overrides,
+        dayOrders: [...(state.overrides.dayOrders || []), dayOrder],
+      },
+    })),
+  deleteDayOrder: (index) =>
+    set((state) => ({
+      overrides: {
+        ...state.overrides,
+        dayOrders: (state.overrides.dayOrders || []).filter((_, i) => i !== index),
+      },
+    })),
+  addCancellation: (cancellation) =>
+    set((state) => ({
+      overrides: {
+        ...state.overrides,
+        cancellations: [...(state.overrides.cancellations || []), cancellation],
+      },
+    })),
+  deleteCancellation: (index) =>
+    set((state) => ({
+      overrides: {
+        ...state.overrides,
+        cancellations: (state.overrides.cancellations || []).filter((_, i) => i !== index),
+      },
+    })),
+  addRoomClosure: (roomClosure) =>
+    set((state) => ({
+      overrides: {
+        ...state.overrides,
+        roomClosures: [...(state.overrides.roomClosures || []), roomClosure],
+      },
+    })),
+  deleteRoomClosure: (index) =>
+    set((state) => ({
+      overrides: {
+        ...state.overrides,
+        roomClosures: (state.overrides.roomClosures || []).filter((_, i) => i !== index),
+      },
     })),
 }));

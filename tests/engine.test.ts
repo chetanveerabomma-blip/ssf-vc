@@ -4,10 +4,17 @@ import {
   findRooms,
   validateDataset,
   buildBookings,
+  validateOverrides,
 } from "../lib/engine";
 import { parseQueryWithRegex } from "../lib/parse";
 import sectionsData from "../data/sections.json";
-import { Section } from "../lib/schemas";
+import {
+  Section,
+  DayOrderSchema,
+  CancellationSchema,
+  RoomClosureSchema,
+  OverridesData,
+} from "../lib/schemas";
 
 // Reference test date: Monday, September 28, 2026 (Semester running)
 const MON_REF = "2026-09-28";
@@ -197,5 +204,167 @@ describe("Floor Manager Availability Engine Acceptance Tests", () => {
     // Missing metadata
     expect(report.missingMetadata.missingAcCount).toBeGreaterThan(0);
     expect(report.missingMetadata.missingCapacityCount).toBeGreaterThan(0);
+  });
+});
+
+describe("Section 13 Timetable Overrides Acceptance Tests", () => {
+  // Test 1: III ECE-A cancellation P1-P2 on a Tuesday makes IST-518 FREE from 09:00 to 10:40 that day, OCCUPIED next Tuesday
+  it("Acceptance Test 1: III ECE-A cancellation P1-P2 on Tuesday makes IST-518 FREE from 09:00 to 10:40 that day, OCCUPIED next Tuesday", () => {
+    const tueDate = "2026-10-06"; // Tuesday in semester
+    const nextTueDate = "2026-10-13"; // Next Tuesday
+    const overrides: OverridesData = {
+      cancellations: [
+        {
+          date: tueDate,
+          sectionId: "III-ECE-A",
+          periods: [1, 2],
+          reason: "Faculty on leave",
+        },
+      ],
+    };
+
+    // During P1 (e.g. 09:30) on cancelled Tuesday
+    const atCancelledTue = new Date(`${tueDate}T09:30:00+05:30`);
+    const statusCancelled = getRoomStatus("IST-518", atCancelledTue, { overrides });
+
+    expect(statusCancelled.status).toBe("FREE");
+    expect(statusCancelled.isChangedToday).toBe(true);
+    expect(statusCancelled.changeReason).toMatch(/class cancelled/i);
+
+    // During P1 on next Tuesday without cancellation
+    const atNextTue = new Date(`${nextTueDate}T09:30:00+05:30`);
+    const statusNextTue = getRoomStatus("IST-518", atNextTue, { overrides });
+
+    expect(statusNextTue.status).toBe("OCCUPIED");
+    expect(statusNextTue.currentBooking?.sectionId).toBe("III-ECE-A");
+  });
+
+  // Test 2: Saturday with followsDay: 'WED' shows Wednesday's occupancy; other Saturdays remain NO CLASSES
+  it("Acceptance Test 2: Saturday with followsDay: 'WED' shows Wednesday's occupancy; other Saturdays remain NO CLASSES", () => {
+    const satWorking = "2026-10-10";
+    const satNormal = "2026-10-17";
+    const wedRef = "2026-10-07";
+
+    const overrides: OverridesData = {
+      dayOrders: [
+        {
+          date: satWorking,
+          followsDay: "WED",
+          note: "Saturday working day",
+        },
+      ],
+    };
+
+    const atWorkingSat = new Date(`${satWorking}T10:00:00+05:30`);
+    const atWed = new Date(`${wedRef}T10:00:00+05:30`);
+    const atNormalSat = new Date(`${satNormal}T10:00:00+05:30`);
+
+    // Working Saturday mirrors Wednesday
+    const statusWorkingSat = getRoomStatus("IST-518", atWorkingSat, { overrides });
+    const statusWed = getRoomStatus("IST-518", atWed);
+    expect(statusWorkingSat.status).toBe(statusWed.status);
+    expect(statusWorkingSat.status).not.toBe("NO_CLASSES");
+
+    // Normal Saturday has no classes
+    const statusNormalSat = getRoomStatus("IST-518", atNormalSat, { overrides });
+    expect(statusNormalSat.status).toBe("NO_CLASSES");
+  });
+
+  // Test 3: Room closure removes room from findRooms results and shows CLOSED in the grid
+  it("Acceptance Test 3: Room closure removes room from findRooms results and shows CLOSED in the grid", () => {
+    const closeDate = "2026-10-12";
+    const overrides: OverridesData = {
+      roomClosures: [
+        {
+          roomId: "IST-108",
+          from: "2026-10-12T00:00",
+          to: "2026-10-14T23:59",
+          reason: "Maintenance",
+        },
+      ],
+    };
+
+    const atClosedTime = new Date(`${closeDate}T10:00:00+05:30`);
+    const status = getRoomStatus("IST-108", atClosedTime, { overrides });
+
+    expect(status.status).toBe("CLOSED");
+    expect(status.isRoomClosed).toBe(true);
+    expect(status.closureReason).toBe("Maintenance");
+
+    // findRooms should never return a CLOSED room
+    const search = findRooms(
+      {
+        startTime: "10:00",
+        durationMin: 60,
+        date: closeDate,
+      },
+      { referenceDate: atClosedTime, overrides }
+    );
+
+    const allMatches = [...search.matches, ...search.partial];
+    expect(allMatches.some((m) => m.room.id === "IST-108")).toBe(false);
+  });
+
+  // Test 4: Holiday with no day-order returns NO CLASSES; holiday with day-order follows day order
+  it("Acceptance Test 4: Holiday with no day-order returns NO CLASSES; holiday with day-order follows day order", () => {
+    const holidayDate = "2026-10-02"; // Gandhi Jayanthi (Friday)
+    const atHoliday = new Date(`${holidayDate}T09:30:00+05:30`);
+
+    // Without day order:
+    const statusNoOrder = getRoomStatus("IST-518", atHoliday);
+    expect(statusNoOrder.status).toBe("NO_CLASSES");
+
+    // With day order following Monday:
+    const overrides: OverridesData = {
+      dayOrders: [
+        {
+          date: holidayDate,
+          followsDay: "MON",
+          note: "Special holiday compensatory day",
+        },
+      ],
+    };
+    const statusWithOrder = getRoomStatus("IST-518", atHoliday, { overrides });
+    expect(statusWithOrder.status).toBe("OCCUPIED");
+    expect(statusWithOrder.currentBooking?.sectionId).toBe("III-ECE-A");
+  });
+
+  // Test 5: Overrides outside semester dates fail validation with clear error message
+  it("Acceptance Test 5: Overrides outside semester dates fail validation with clear error message", () => {
+    // Before semester (< 2026-08-29)
+    const invalidBefore = {
+      dayOrders: [
+        {
+          date: "2026-08-15",
+          followsDay: "MON" as const,
+        },
+      ],
+    };
+    const resBefore = validateOverrides(invalidBefore);
+    expect(resBefore.valid).toBe(false);
+    expect(resBefore.errors[0]).toMatch(/outside the active semester/i);
+
+    // After semester (> 2026-11-29)
+    const invalidAfter = {
+      cancellations: [
+        {
+          date: "2026-12-05",
+          sectionId: "III-ECE-A",
+          periods: [1],
+          reason: "Winter session",
+        },
+      ],
+    };
+    const resAfter = validateOverrides(invalidAfter);
+    expect(resAfter.valid).toBe(false);
+    expect(resAfter.errors[0]).toMatch(/outside the active semester/i);
+
+    // Schema parse also rejects invalid dates
+    expect(() =>
+      DayOrderSchema.parse({
+        date: "2026-12-10",
+        followsDay: "WED",
+      })
+    ).toThrow(/active semester/i);
   });
 });

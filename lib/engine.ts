@@ -1,5 +1,5 @@
 import { PERIOD_GRIDS, RULES, getFloorFromRoomId } from "@/config/rules";
-import { Room, RoomQuery, RoomStatus, Section } from "@/lib/schemas";
+import { Room, RoomQuery, RoomStatus, Section, OverridesData } from "@/lib/schemas";
 import {
   formatMinutesToTime,
   getDayOfWeekString,
@@ -7,10 +7,12 @@ import {
   isHoliday,
   isSemesterActive,
   formatIST,
+  timeStringToMinutes,
 } from "@/lib/time";
 import roomsData from "@/data/rooms.json";
 import sectionsData from "@/data/sections.json";
 import aliasesData from "@/data/aliases.json";
+import overridesData from "@/data/overrides.json";
 
 export interface Booking {
   id: string;
@@ -48,6 +50,11 @@ export interface RoomAvailabilityStatus {
   nextBooking?: Booking;
   isLunchBreak?: boolean;
   isTeaBreak?: boolean;
+  isChangedToday?: boolean;
+  changeReason?: string;
+  isRoomClosed?: boolean;
+  closureReason?: string;
+  cancelledBookingsToday?: Booking[];
 }
 
 export interface FreeWindow {
@@ -301,6 +308,7 @@ export function getRoomStatus(
     bookings?: Booking[];
     rooms?: Room[];
     strictReservation?: boolean;
+    overrides?: OverridesData;
   } = {}
 ): RoomAvailabilityStatus {
   const normalizedId = normalizeRoomId(roomId);
@@ -315,20 +323,52 @@ export function getRoomStatus(
   };
 
   const dateStr = formatIST(at, "yyyy-MM-dd");
-  const dayStr = getDayOfWeekString(at);
   const currentMin = getMinutesSinceMidnight(at);
+  const atIsoStr = formatIST(at, "yyyy-MM-dd'T'HH:mm");
 
-  // Check if weekend or holiday
+  const overrides: OverridesData = options.overrides || (overridesData as unknown as OverridesData);
+
+  // 1. Room Closure check: A closed room is CLOSED for the whole interval, whatever its bookings are.
+  const activeClosure = (overrides.roomClosures || []).find((rc) => {
+    return normalizeRoomId(rc.roomId) === normalizedId && atIsoStr >= rc.from && atIsoStr <= rc.to;
+  });
+
+  const todayClosure = (overrides.roomClosures || []).find((rc) => {
+    const fromDate = rc.from.split("T")[0];
+    const toDate = rc.to.split("T")[0];
+    return normalizeRoomId(rc.roomId) === normalizedId && dateStr >= fromDate && dateStr <= toDate;
+  });
+
+  if (activeClosure) {
+    return {
+      roomId: normalizedId,
+      room,
+      status: "CLOSED",
+      isRoomClosed: true,
+      closureReason: activeClosure.reason || "Maintenance",
+      isChangedToday: true,
+      changeReason: `Closed: ${activeClosure.reason || "Maintenance"}`,
+      busyUntil: activeClosure.to.includes("T") ? activeClosure.to.split("T")[1] : "23:59",
+    };
+  }
+
+  // 2. Day Order check: if date is in dayOrders, use timetable of followsDay instead of calendar weekday.
+  const dayOrderMatch = (overrides.dayOrders || []).find((d) => d.date === dateStr);
+  const effectiveDayStr = dayOrderMatch ? dayOrderMatch.followsDay : getDayOfWeekString(at);
+
+  // 3. Holidays check: Holidays still win over normal timetable, except on a date that has an explicit day order.
   const holiday = isHoliday(dateStr);
-  const isWeekend = dayStr === "SAT" || dayStr === "SUN";
+  const isWeekend = effectiveDayStr === "SAT" || effectiveDayStr === "SUN";
 
-  if (isWeekend || holiday) {
+  if ((holiday && !dayOrderMatch) || isWeekend) {
     return {
       roomId: normalizedId,
       room,
       status: "NO_CLASSES",
       freeUntil: formatMinutesToTime(RULES.campusHours.endMin),
       freeMinutes: Math.max(0, RULES.campusHours.endMin - currentMin),
+      isChangedToday: Boolean(todayClosure),
+      changeReason: todayClosure ? `Closed: ${todayClosure.reason || "Maintenance"}` : undefined,
     };
   }
 
@@ -343,9 +383,43 @@ export function getRoomStatus(
   }
 
   const allBookings = options.bookings || buildBookings(undefined, options);
-  const dayBookings = allBookings
-    .filter((b) => b.roomId === normalizedId && b.day === dayStr)
+
+  // 4. Cancellations check: remove matching bookings, which frees their rooms for those periods.
+  const dayCancellations = (overrides.cancellations || []).filter((c) => c.date === dateStr);
+
+  const rawDayBookings = allBookings
+    .filter((b) => b.roomId === normalizedId && b.day === effectiveDayStr)
     .sort((a, b) => a.startMin - b.startMin);
+
+  const cancelledBookingsToday: Booking[] = [];
+  const dayBookings: Booking[] = [];
+
+  for (const b of rawDayBookings) {
+    const isCancelled = dayCancellations.some(
+      (c) =>
+        c.sectionId === b.sectionId &&
+        c.periods.some((p) => p >= b.startPeriod && p <= b.endPeriod)
+    );
+    if (isCancelled) {
+      cancelledBookingsToday.push(b);
+    } else {
+      dayBookings.push(b);
+    }
+  }
+
+  const isChangedToday =
+    Boolean(dayOrderMatch) ||
+    cancelledBookingsToday.length > 0 ||
+    Boolean(todayClosure);
+
+  let changeReason: string | undefined;
+  if (todayClosure) {
+    changeReason = `Closed: ${todayClosure.reason || "Maintenance"}`;
+  } else if (cancelledBookingsToday.length > 0) {
+    changeReason = "Changed today: class cancelled";
+  } else if (dayOrderMatch) {
+    changeReason = `Day order: follows ${dayOrderMatch.followsDay}${dayOrderMatch.note ? ` (${dayOrderMatch.note})` : ""}`;
+  }
 
   // Check for active conflicts at currentMin
   const activeBookings = dayBookings.filter(
@@ -361,13 +435,15 @@ export function getRoomStatus(
       status: "DATA_CONFLICT",
       conflictingBookings: activeBookings,
       busyUntil: formatMinutesToTime(latestEnd),
+      isChangedToday,
+      changeReason,
+      cancelledBookingsToday,
     };
   }
 
   if (activeBookings.length === 1) {
     // Occupied
     const active = activeBookings[0];
-    // Find consecutive occupied chain
     let busyEnd = active.endMin;
     let nextIdx = dayBookings.indexOf(active) + 1;
     while (nextIdx < dayBookings.length && dayBookings[nextIdx].startMin === busyEnd) {
@@ -381,6 +457,9 @@ export function getRoomStatus(
       status: "OCCUPIED",
       currentBooking: active,
       busyUntil: formatMinutesToTime(busyEnd),
+      isChangedToday,
+      changeReason,
+      cancelledBookingsToday,
     };
   }
 
@@ -408,6 +487,9 @@ export function getRoomStatus(
     nextBooking,
     isLunchBreak: isLunch,
     isTeaBreak: isTea,
+    isChangedToday,
+    changeReason,
+    cancelledBookingsToday,
   };
 }
 
@@ -415,14 +497,29 @@ export function getRoomStatus(
 export function getFreeWindows(
   roomId: string,
   date: Date,
-  options: { bookings?: Booking[] } = {}
+  options: { bookings?: Booking[]; overrides?: OverridesData } = {}
 ): FreeWindow[] {
   const normalizedId = normalizeRoomId(roomId);
   const dateStr = formatIST(date, "yyyy-MM-dd");
-  const dayStr = getDayOfWeekString(date);
+  const overrides: OverridesData = options.overrides || (overridesData as unknown as OverridesData);
 
-  const isWeekend = dayStr === "SAT" || dayStr === "SUN";
-  if (isWeekend || isHoliday(dateStr)) {
+  // Check if room is closed for the full day
+  const fullDayClosure = (overrides.roomClosures || []).find((rc) => {
+    return (
+      normalizeRoomId(rc.roomId) === normalizedId &&
+      rc.from <= `${dateStr}T08:00` &&
+      rc.to >= `${dateStr}T18:00`
+    );
+  });
+  if (fullDayClosure) {
+    return []; // Closed room has no free windows
+  }
+
+  const dayOrderMatch = (overrides.dayOrders || []).find((d) => d.date === dateStr);
+  const effectiveDayStr = dayOrderMatch ? dayOrderMatch.followsDay : getDayOfWeekString(date);
+
+  const isWeekend = effectiveDayStr === "SAT" || effectiveDayStr === "SUN";
+  if ((isHoliday(dateStr) && !dayOrderMatch) || isWeekend) {
     return [
       {
         startMin: RULES.campusHours.startMin,
@@ -436,9 +533,21 @@ export function getFreeWindows(
   }
 
   const allBookings = options.bookings || buildBookings();
-  const dayBookings = allBookings
-    .filter((b) => b.roomId === normalizedId && b.day === dayStr)
+  const dayCancellations = (overrides.cancellations || []).filter((c) => c.date === dateStr);
+
+  const rawDayBookings = allBookings
+    .filter((b) => b.roomId === normalizedId && b.day === effectiveDayStr)
     .sort((a, b) => a.startMin - b.startMin);
+
+  // Remove cancelled bookings
+  const dayBookings = rawDayBookings.filter(
+    (b) =>
+      !dayCancellations.some(
+        (c) =>
+          c.sectionId === b.sectionId &&
+          c.periods.some((p) => p >= b.startPeriod && p <= b.endPeriod)
+      )
+  );
 
   // Merge overlapping or contiguous occupied blocks
   const occupiedSpans: { startMin: number; endMin: number }[] = [];
@@ -454,6 +563,23 @@ export function getFreeWindows(
       }
     }
   }
+
+  // Also include partial closures during campus hours
+  for (const rc of overrides.roomClosures || []) {
+    if (normalizeRoomId(rc.roomId) === normalizedId) {
+      const [fromD, fromT] = rc.from.split("T");
+      const [toD, toT] = rc.to.split("T");
+      if (dateStr >= fromD && dateStr <= toD) {
+        const cStartMin = dateStr === fromD ? Math.max(480, timeStringToMinutes(fromT)) : 480;
+        const cEndMin = dateStr === toD ? Math.min(1080, timeStringToMinutes(toT)) : 1080;
+        if (cStartMin < cEndMin) {
+          occupiedSpans.push({ startMin: cStartMin, endMin: cEndMin });
+        }
+      }
+    }
+  }
+
+  occupiedSpans.sort((a, b) => a.startMin - b.startMin);
 
   // Complement of occupiedSpans between campus start (480) and campus close (1080)
   const freeWindows: FreeWindow[] = [];
@@ -496,18 +622,23 @@ export function findRooms(
     referenceDate?: Date;
     rooms?: Room[];
     bookings?: Booking[];
+    overrides?: OverridesData;
   } = {}
 ): FindRoomsResult {
   const rooms: Room[] = options.rooms || (roomsData as unknown as Room[]);
   const refDate = options.referenceDate || new Date();
   const dateStr = query.date || formatIST(refDate, "yyyy-MM-dd");
-  const dayStr = getDayOfWeekString(new Date(dateStr + "T12:00:00"));
+  const overrides: OverridesData = options.overrides || (overridesData as unknown as OverridesData);
+
+  const dayOrderMatch = (overrides.dayOrders || []).find((d) => d.date === dateStr);
+  const dayStr = dayOrderMatch
+    ? dayOrderMatch.followsDay
+    : getDayOfWeekString(new Date(dateStr + "T12:00:00"));
 
   let startMin = query.startTime
     ? getMinutesSinceMidnight(new Date(`2026-01-01T${query.startTime}:00`))
     : getMinutesSinceMidnight(refDate);
 
-  // Clamp startMin to campus hours
   startMin = Math.max(RULES.campusHours.startMin, Math.min(RULES.campusHours.endMin, startMin));
 
   let durationMin = query.durationMin || 60;
@@ -525,7 +656,9 @@ export function findRooms(
   const matches: RoomMatch[] = [];
   const partial: RoomMatch[] = [];
 
-  // Check if requested time is outside campus hours or ends right at closing
+  const queryStartIso = `${dateStr}T${formatMinutesToTime(startMin)}`;
+  const queryEndIso = `${dateStr}T${formatMinutesToTime(targetEndMin)}`;
+
   if (startMin >= RULES.campusHours.endMin) {
     notes.push("Campus is closed at the requested time (operating hours 08:00 - 18:00).");
     return {
@@ -543,6 +676,16 @@ export function findRooms(
   }
 
   for (const room of rooms) {
+    // Check Room Closure (Rule 3: never returned by findRooms)
+    const isClosed = (overrides.roomClosures || []).some((rc) => {
+      if (normalizeRoomId(rc.roomId) !== room.id) return false;
+      return rc.from < queryEndIso && rc.to > queryStartIso;
+    });
+
+    if (isClosed) {
+      continue;
+    }
+
     // 1. Filter checks
     if (query.floor && query.floor.length > 0) {
       if (room.floor === null || !query.floor.includes(room.floor)) {
@@ -554,7 +697,7 @@ export function findRooms(
       continue;
     }
 
-    // AC check: if user asked for ac: true
+    // AC check
     let acUnverified = false;
     if (query.ac === true) {
       if (room.ac === false) continue;
@@ -572,16 +715,17 @@ export function findRooms(
       }
     }
 
-    // 2. Check availability window
+    // 2. Check availability window with overrides applied
     const targetDateObj = new Date(dateStr + "T10:00:00");
-    const freeWindows = getFreeWindows(room.id, targetDateObj, { bookings: allBookings });
+    const freeWindows = getFreeWindows(room.id, targetDateObj, {
+      bookings: allBookings,
+      overrides,
+    });
 
-    // Look for windows overlapping [startMin, targetEndMin]
     let maxContinuousFree = 0;
     let bestWindow: FreeWindow | null = null;
 
     for (const w of freeWindows) {
-      // Check overlap
       const overlapStart = Math.max(startMin, w.startMin);
       const overlapEnd = Math.min(targetEndMin, w.endMin);
 
@@ -598,10 +742,13 @@ export function findRooms(
       continue;
     }
 
-    // Determine if full match or partial match
-    const isFull = maxContinuousFree >= actualRequestedDuration && bestWindow.startMin <= startMin && bestWindow.endMin >= targetEndMin;
+    const isFull =
+      maxContinuousFree >= actualRequestedDuration &&
+      bestWindow.startMin <= startMin &&
+      bestWindow.endMin >= targetEndMin;
 
-    const floorLabel = room.floor !== null ? (RULES.floorLabels[room.floor] || `Floor ${room.floor}`) : "Unmapped floor";
+    const floorLabel =
+      room.floor !== null ? RULES.floorLabels[room.floor] || `Floor ${room.floor}` : "Unmapped floor";
     const acText = room.ac === true ? "AC verified" : room.ac === false ? "Non-AC" : "AC unverified";
 
     const bufferAfterEnd = Math.max(0, bestWindow.endMin - targetEndMin);
@@ -609,8 +756,32 @@ export function findRooms(
     const requestedFloor = query.floor?.[0] ?? 0;
     const floorDistance = room.floor !== null ? Math.abs(room.floor - requestedFloor) : 10;
 
-    // Match score: full match (1000) + buffer (up to 100) - floor distance - capacity penalty
-    const matchScore = (isFull ? 1000 : 100) + Math.min(100, bufferAfterEnd) - floorDistance * 10 - Math.min(50, capacityWaste);
+    const matchScore =
+      (isFull ? 1000 : 100) +
+      Math.min(100, bufferAfterEnd) -
+      floorDistance * 10 -
+      Math.min(50, capacityWaste);
+
+    // Check if cancellation saved this room
+    const dayCancellations = (overrides.cancellations || []).filter((c) => c.date === dateStr);
+    const freedByCancel = dayCancellations.find((c) => {
+      const secBookings = allBookings.filter(
+        (b) => b.roomId === room.id && b.sectionId === c.sectionId && b.day === dayStr
+      );
+      return secBookings.some((b) => {
+        const isCancelled = c.periods.some((p) => p >= b.startPeriod && p <= b.endPeriod);
+        const overlaps = Math.max(startMin, b.startMin) < Math.min(targetEndMin, b.endMin);
+        return isCancelled && overlaps;
+      });
+    });
+
+    let why = isFull
+      ? `${floorLabel}, free for your full ${actualRequestedDuration} min (${formatMinutesToTime(startMin)} - ${formatMinutesToTime(targetEndMin)}) · ${acText}`
+      : `${floorLabel}, free for ${maxContinuousFree} of your requested ${actualRequestedDuration} min (${bestWindow.startTime} - ${bestWindow.endTime})`;
+
+    if (freedByCancel) {
+      why += ` · Note: this room is free because ${freedByCancel.reason || "class was cancelled"}.`;
+    }
 
     const matchObj: RoomMatch = {
       room,
@@ -619,9 +790,7 @@ export function findRooms(
       requestedMinutes: actualRequestedDuration,
       isFullMatch: isFull,
       matchScore,
-      why: isFull
-        ? `${floorLabel}, free for your full ${actualRequestedDuration} min (${formatMinutesToTime(startMin)} - ${formatMinutesToTime(targetEndMin)}) · ${acText}`
-        : `${floorLabel}, free for ${maxContinuousFree} of your requested ${actualRequestedDuration} min (${bestWindow.startTime} - ${bestWindow.endTime})`,
+      why,
       acUnverified,
     };
 
@@ -632,7 +801,6 @@ export function findRooms(
     }
   }
 
-  // Sort matches by matchScore descending
   matches.sort((a, b) => b.matchScore - a.matchScore);
   partial.sort((a, b) => b.minutesAvailable - a.minutesAvailable || b.matchScore - a.matchScore);
 
@@ -647,6 +815,60 @@ export function findRooms(
       day: dayStr,
       durationMin: actualRequestedDuration,
     },
+  };
+}
+
+// Validate overrides data integrity
+export function validateOverrides(
+  overrides: OverridesData,
+  validSections: string[] = sectionsData.map((s) => s.id),
+  validRooms: string[] = (roomsData as unknown as Room[]).map((r) => r.id)
+): { valid: boolean; errors: string[] } {
+  const errors: string[] = [];
+
+  for (const d of overrides.dayOrders || []) {
+    if (d.date < RULES.semester.startDate || d.date > RULES.semester.endDate) {
+      errors.push(
+        `Day order date '${d.date}' is outside the active semester (${RULES.semester.startDate} to ${RULES.semester.endDate}).`
+      );
+    }
+  }
+
+  for (const c of overrides.cancellations || []) {
+    if (c.date < RULES.semester.startDate || c.date > RULES.semester.endDate) {
+      errors.push(
+        `Cancellation date '${c.date}' is outside the active semester (${RULES.semester.startDate} to ${RULES.semester.endDate}).`
+      );
+    }
+    if (!validSections.includes(c.sectionId)) {
+      errors.push(`Cancellation references unknown section: '${c.sectionId}'.`);
+    }
+    if (c.periods.some((p) => p < 1 || p > 9)) {
+      errors.push(`Cancellation periods must be between 1 and 9 (received: ${c.periods.join(", ")}).`);
+    }
+  }
+
+  for (const rc of overrides.roomClosures || []) {
+    const normId = normalizeRoomId(rc.roomId);
+    if (!validRooms.includes(normId)) {
+      errors.push(`Room closure references unknown room: '${rc.roomId}'.`);
+    }
+    const fromDate = rc.from.split("T")[0];
+    const toDate = rc.to.split("T")[0];
+    if (fromDate < RULES.semester.startDate || fromDate > RULES.semester.endDate) {
+      errors.push(`Room closure 'from' date '${fromDate}' is outside the active semester.`);
+    }
+    if (toDate < RULES.semester.startDate || toDate > RULES.semester.endDate) {
+      errors.push(`Room closure 'to' date '${toDate}' is outside the active semester.`);
+    }
+    if (rc.from > rc.to) {
+      errors.push(`Room closure 'from' timestamp (${rc.from}) is later than 'to' timestamp (${rc.to}).`);
+    }
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors,
   };
 }
 

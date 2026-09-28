@@ -38,6 +38,7 @@ import {
   SlidersHorizontal,
   X,
   Sparkles,
+  Lock,
 } from "lucide-react";
 import sectionsData from "@/data/sections.json";
 import { Section } from "@/lib/schemas";
@@ -55,6 +56,7 @@ function GridPageContent() {
     strictReservation,
     enabledSections,
     rooms,
+    overrides,
     setDate,
     setTime,
     setLiveNow,
@@ -121,9 +123,10 @@ function GridPageContent() {
         bookings: currentBookings,
         rooms,
         strictReservation,
+        overrides,
       })
     );
-  }, [rooms, currentDateObj, currentBookings, strictReservation]);
+  }, [rooms, currentDateObj, currentBookings, strictReservation, overrides]);
 
   // Apply filters to room statuses
   const filteredRoomsStatus = useMemo(() => {
@@ -187,11 +190,33 @@ function GridPageContent() {
     return groups;
   }, [filteredRoomsStatus]);
 
+  // Section 13 timetable overrides calculations for selected date
+  const dayOrderToday = useMemo(() => {
+    return overrides?.dayOrders?.find((d) => d.date === selectedDate);
+  }, [overrides, selectedDate]);
+
+  const cancellationsToday = useMemo(() => {
+    return (overrides?.cancellations || []).filter((c) => c.date === selectedDate);
+  }, [overrides, selectedDate]);
+
+  const closuresToday = useMemo(() => {
+    return (overrides?.roomClosures || []).filter((rc) => {
+      const d = selectedDate;
+      const f = rc.from.slice(0, 10);
+      const t = rc.to.slice(0, 10);
+      return d >= f && d <= t;
+    });
+  }, [overrides, selectedDate]);
+
+  const totalOverridesToday =
+    (dayOrderToday ? 1 : 0) + cancellationsToday.length + closuresToday.length;
+
   // Summary counts
   const freeNowCount = allRoomsStatus.filter((r) => r.status === "FREE").length;
   const freeSoonCount = allRoomsStatus.filter((r) => r.status === "FREE_SOON").length;
   const occupiedCount = allRoomsStatus.filter((r) => r.status === "OCCUPIED").length;
   const conflictCount = allRoomsStatus.filter((r) => r.status === "DATA_CONFLICT").length;
+  const closedCount = allRoomsStatus.filter((r) => r.status === "CLOSED").length;
 
   const handleAiSearch = (queryText: string) => {
     router.push(`/finder?q=${encodeURIComponent(queryText)}`);
@@ -199,7 +224,27 @@ function GridPageContent() {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-      {/* 1. BANNERS: Semester / Weekend / Holiday / Data Completeness */}
+      {/* 1. BANNERS: Overrides / Semester / Weekend / Holiday / Data Completeness */}
+      {totalOverridesToday > 0 && (
+        <div className="p-3 bg-[#FFD93D] border-[3px] border-black rounded-[4px] shadow-[4px_4px_0px_#0A0A0A] flex flex-wrap items-center justify-between gap-2 font-mono text-xs font-black text-black">
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 bg-black text-[#FFD93D] text-[10px] tracking-wider uppercase border border-black rounded-[2px]">
+              OVERRIDE ACTIVE
+            </span>
+            <span>
+              {totalOverridesToday} {totalOverridesToday === 1 ? "CHANGE" : "CHANGES"} TODAY:{" "}
+              {dayOrderToday ? `FOLLOWING ${dayOrderToday.followsDay} ORDER · ` : ""}
+              {cancellationsToday.length} CANCELLED · {closuresToday.length} CLOSED
+            </span>
+          </div>
+          {dayOrderToday?.note && (
+            <span className="text-[11px] font-sans font-bold bg-white/80 px-2 py-0.5 border border-black rounded">
+              {dayOrderToday.note}
+            </span>
+          )}
+        </div>
+      )}
+
       {!semesterActive && (
         <div className="p-3 bg-[#FFD93D] border-[3px] border-black rounded-[4px] shadow-[4px_4px_0px_#0A0A0A] flex items-center gap-2 font-mono text-xs font-black text-black">
           <AlertTriangle size={18} className="text-black flex-shrink-0" />
@@ -209,7 +254,7 @@ function GridPageContent() {
         </div>
       )}
 
-      {(isWeekend || holiday) && (
+      {!dayOrderToday && (isWeekend || holiday) && (
         <div className="p-3 bg-[#6BCB77] border-[3px] border-black rounded-[4px] shadow-[4px_4px_0px_#0A0A0A] flex items-center gap-2 font-mono text-xs font-black text-black">
           <Info size={18} className="text-black flex-shrink-0" />
           <span>
@@ -272,6 +317,11 @@ function GridPageContent() {
           {conflictCount > 0 && (
             <div className="px-3 py-1.5 bg-[#B983FF] border-2 border-black rounded-[2px] font-mono text-xs font-black shadow-[2px_2px_0px_#0A0A0A] flex items-center gap-1">
               <AlertTriangle size={14} /> {conflictCount} CONFLICTS
+            </div>
+          )}
+          {closedCount > 0 && (
+            <div className="px-3 py-1.5 bg-[#262626] text-white border-2 border-black rounded-[2px] font-mono text-xs font-black shadow-[2px_2px_0px_#0A0A0A] flex items-center gap-1">
+              <Lock size={14} /> {closedCount} CLOSED
             </div>
           )}
         </div>

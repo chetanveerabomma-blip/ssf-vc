@@ -5,7 +5,7 @@ import Link from "next/link";
 import { RoomAvailabilityStatus } from "@/lib/engine";
 import { NBBadge } from "@/components/nb/NBBadge";
 import { clsx } from "clsx";
-import { AlertCircle, Clock, Info, Snowflake, Users } from "lucide-react";
+import { AlertCircle, Clock, Info, Lock, Snowflake, Users } from "lucide-react";
 
 export interface RoomTileProps {
   statusData: RoomAvailabilityStatus;
@@ -13,8 +13,20 @@ export interface RoomTileProps {
 
 export const RoomTile: React.FC<RoomTileProps> = ({ statusData }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const { room, status, freeUntil, busyUntil, freeMinutes, currentBooking, nextBooking, conflictingBookings } =
-    statusData;
+  const {
+    room,
+    status,
+    freeUntil,
+    busyUntil,
+    freeMinutes,
+    currentBooking,
+    nextBooking,
+    conflictingBookings,
+    isChangedToday,
+    changeReason,
+    isRoomClosed,
+    closureReason,
+  } = statusData;
 
   const statusConfig = {
     FREE: {
@@ -52,6 +64,13 @@ export const RoomTile: React.FC<RoomTileProps> = ({ statusData }) => {
       label: "NO CLASSES",
       subtext: "HOLIDAY / WEEKEND",
     },
+    CLOSED: {
+      bg: "bg-[#262626]",
+      border: "border-black",
+      text: "text-white",
+      label: "CLOSED",
+      subtext: closureReason ? `CLOSED: ${closureReason.toUpperCase()}` : "LOCKED / MAINTENANCE",
+    },
   };
 
   const currentConfig = statusConfig[status] || statusConfig.FREE;
@@ -82,14 +101,26 @@ export const RoomTile: React.FC<RoomTileProps> = ({ statusData }) => {
             <span className="font-mono text-2xl font-black tracking-tight leading-none">
               {room.label || room.id}
             </span>
-            <span
-              className={clsx(
-                "px-2 py-0.5 text-[10px] font-black font-mono uppercase tracking-wider rounded-[2px] border-2 border-black shadow-[1px_1px_0px_#0A0A0A]",
-                status === "OCCUPIED" ? "bg-white text-black" : "bg-black text-white"
+            <div className="flex items-center gap-1">
+              {isChangedToday && (
+                <span className="px-1.5 py-0.5 text-[9px] font-black font-mono uppercase tracking-wider bg-[#FFD93D] text-black border-2 border-black shadow-[1px_1px_0px_#0A0A0A] rounded-[2px]">
+                  CHANGED TODAY
+                </span>
               )}
-            >
-              {currentConfig.label}
-            </span>
+              <span
+                className={clsx(
+                  "px-2 py-0.5 text-[10px] font-black font-mono uppercase tracking-wider rounded-[2px] border-2 border-black shadow-[1px_1px_0px_#0A0A0A] flex items-center gap-1",
+                  status === "OCCUPIED"
+                    ? "bg-white text-black"
+                    : status === "CLOSED"
+                    ? "bg-neutral-900 text-white"
+                    : "bg-black text-white"
+                )}
+              >
+                {status === "CLOSED" && <Lock size={10} />}
+                {currentConfig.label}
+              </span>
+            </div>
           </div>
 
           {/* Middle: Free/Busy timer line */}
@@ -154,7 +185,22 @@ export const RoomTile: React.FC<RoomTileProps> = ({ statusData }) => {
             </span>
           </div>
 
-          {status === "DATA_CONFLICT" && conflictingBookings ? (
+          {isChangedToday && changeReason && (
+            <div className="mb-2 text-[11px] font-mono font-black bg-[#FFD93D] text-black p-1.5 border-2 border-black rounded shadow-[2px_2px_0px_#0A0A0A]">
+              ⚡ {changeReason}
+            </div>
+          )}
+
+          {status === "CLOSED" ? (
+            <div className="space-y-1 mb-2 text-xs font-mono text-white font-bold bg-[#262626] p-2 border-2 border-black rounded shadow-[2px_2px_0px_#0A0A0A]">
+              <div className="flex items-center gap-1 text-[#FFD93D]">
+                <Lock size={14} /> Closed: {closureReason || "Maintenance"}
+              </div>
+              <div className="text-[11px] text-gray-300">
+                Room is locked and excluded from finder results.
+              </div>
+            </div>
+          ) : status === "DATA_CONFLICT" && conflictingBookings ? (
             <div className="space-y-1 mb-2 text-xs font-mono text-red-600 font-bold bg-red-50 p-2 border border-red-500 rounded">
               <div className="flex items-center gap-1">
                 <AlertCircle size={14} /> Conflicting Bookings:

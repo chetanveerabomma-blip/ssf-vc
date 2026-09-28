@@ -1,0 +1,25 @@
+{
+  "dayOrders": [
+    {
+      "date": "2026-10-10",
+      "followsDay": "WED",
+      "note": "Saturday working day"
+    }
+  ],
+  "cancellations": [
+    {
+      "date": "2026-10-06",
+      "sectionId": "III-ECE-A",
+      "periods": [1, 2],
+      "reason": "Faculty on leave"
+    }
+  ],
+  "roomClosures": [
+    {
+      "roomId": "IST-108",
+      "from": "2026-10-12T00:00",
+      "to": "2026-10-14T23:59",
+      "reason": "Maintenance"
+    }
+  ]
+}
