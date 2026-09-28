@@ -56,7 +56,7 @@
 
 ---
 
-## 4. Neobrutalist Design System
+## 4. Design System
 
 - **Color Tokens:**
   - Cream Background: `#FFF8E7`
