@@ -1,0 +1,65 @@
+{
+  "section": {
+    "id": "3-ece",
+    "year": 3,
+    "branch": "ECE",
+    "label": "Year III - Electronics & Communication Engineering"
+  },
+  "subjects": [
+    { "code": "26ECE301", "name": "Microprocessors & Microcontrollers", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26ECE302", "name": "VLSI Design", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26ECE303", "name": "Digital Signal Processing", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26ECE304", "name": "Antenna & Microwave Engineering", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26ECL305", "name": "DSP Laboratory", "type": "LAB", "periodsPerSession": 2 },
+    { "code": "26ECL306", "name": "VLSI Design Laboratory", "type": "LAB", "periodsPerSession": 2 }
+  ],
+  "week": {
+    "MON": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE301" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE302" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE303" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE304" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26ECL305" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26ECL305" }
+    ],
+    "TUE": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE303" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE301" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE304" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE302" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26ECL306" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26ECL306" }
+    ],
+    "WED": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE302" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE304" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE301" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE303" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26ECE301" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26ECE302" }
+    ],
+    "THU": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE304" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE303" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE302" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE301" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26ECL305" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26ECL305" }
+    ],
+    "FRI": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE301" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE302" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE303" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE304" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26ECE303" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26ECE304" }
+    ],
+    "SAT": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE302" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE301" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE304" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE303" }
+    ]
+  },
+  "dayOrderOverrides": []
+}

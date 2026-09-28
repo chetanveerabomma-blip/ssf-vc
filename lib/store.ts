@@ -3,6 +3,7 @@ import { Room, RoomStatus, OverridesData, DayOrder, Cancellation, RoomClosure } 
 import roomsData from "@/data/rooms.json";
 import sectionsData from "@/data/sections.json";
 import overridesData from "@/data/overrides.json";
+export * from "./attendanceStore";
 
 export interface FilterState {
   floor: number | null; // null means all floors

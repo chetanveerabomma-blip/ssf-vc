@@ -1,0 +1,66 @@
+{
+  "section": {
+    "id": "1-bme",
+    "year": 1,
+    "branch": "BME",
+    "label": "Year I - Biomedical Engineering"
+  },
+  "subjects": [
+    { "code": "26MAT101", "name": "Calculus and Linear Algebra", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BME102", "name": "Human Anatomy & Physiology", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BME103", "name": "Medical Physics & Biophysics", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26CHY104", "name": "Biochemistry for Engineers", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26CSE105", "name": "C Programming & Data Structures", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BML106", "name": "Physiology Laboratory", "type": "LAB", "periodsPerSession": 2 },
+    { "code": "26CSL108", "name": "C Programming Laboratory", "type": "LAB", "periodsPerSession": 2 }
+  ],
+  "week": {
+    "MON": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26MAT101" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME102" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME103" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26CHY104" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BML106" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26BML106" }
+    ],
+    "TUE": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26CSE105" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26MAT101" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME102" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME103" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26CHY104" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26CSE105" }
+    ],
+    "WED": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME103" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26CSE105" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26MAT101" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME102" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26CSL108" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26CSL108" }
+    ],
+    "THU": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26MAT101" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME102" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26CHY104" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME103" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26CSE105" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26MAT101" }
+    ],
+    "FRI": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26CHY104" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26MAT101" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME102" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26CSE105" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BML106" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26BML106" }
+    ],
+    "SAT": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26MAT101" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME103" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26CSE105" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26CHY104" }
+    ]
+  },
+  "dayOrderOverrides": []
+}

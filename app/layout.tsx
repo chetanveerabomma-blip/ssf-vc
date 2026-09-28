@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/nb/Navbar";
 import { Footer } from "@/components/nb/Footer";
-import { Marquee } from "@/components/nb/Marquee";
+import { CampusAssistant } from "@/components/assistant/CampusAssistant";
+import { SessionProviderWrapper } from "@/components/SessionProviderWrapper";
 
 export const metadata: Metadata = {
-  title: "FLOOR MANAGER | SRM Trichy School of EEE",
+  title: "CAMPUS UNIFIED | SRM Trichy School of EEE",
   description:
-    "Real-time room availability and AI room finder for SRM Trichy, School of EEE. Find which rooms are empty right now, and which fit your needs.",
+    "Integrated attendance forecasting, 3D interactive building map, live per-room countdowns, and Call the Squad for SRM Trichy School of EEE.",
 };
 
 export default function RootLayout({
@@ -17,11 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
-        <Marquee />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="flex flex-col min-h-screen bg-[#FFF8E7] text-black">
+        <SessionProviderWrapper>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <CampusAssistant />
+          <Footer />
+        </SessionProviderWrapper>
       </body>
     </html>
   );

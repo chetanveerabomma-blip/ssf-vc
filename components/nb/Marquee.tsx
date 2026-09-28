@@ -1,27 +1,41 @@
 import React from "react";
-import { clsx } from "clsx";
 
 export interface MarqueeProps {
   text?: string;
+  items?: string[];
   className?: string;
 }
 
 export const Marquee: React.FC<MarqueeProps> = ({
-  text = "LIVE ROOM AVAILABILITY • 12 SECTIONS • ALL FLOORS • UPDATED EVERY MINUTE • REAL-TIME SRM TRICHY EEE TIMETABLES • FREE / OCCUPIED / SOON STATUS • ",
-  className,
+  text,
+  items = [
+    "SEMESTER ENDS: 29 NOV 2026",
+    "DETENTION THRESHOLD: 75% STRICT",
+    "TARGET ATTENDANCE: 90%",
+    "SRM TRICHY • SCHOOL OF EEE",
+    "LAB PERIODS COUNT AS MANDATORY SESSIONS",
+    "CHECK YOUR RECOVERY PLAN REGULARLY",
+    "OFFICIAL DEANERY NOTIFICATION COMPLIANT",
+  ],
+  className = "",
 }) => {
+  const displayItems = items || (text ? [text] : []);
+  const repeated = [...displayItems, ...displayItems, ...displayItems];
+
   return (
     <div
-      className={clsx(
-        "w-full h-8 bg-black text-[#FFD93D] overflow-hidden whitespace-nowrap border-b-[3px] border-black flex items-center select-none",
-        className
-      )}
+      className={`w-full overflow-hidden bg-nb-yellow border-b-[3px] border-nb-ink py-1.5 select-none ${className}`}
     >
-      <div className="inline-block animate-marquee motion-reduce:animate-none font-mono text-xs font-bold uppercase tracking-widest">
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
-        <span>{text}</span>
+      <div className="flex w-max animate-marquee whitespace-nowrap">
+        {repeated.map((item, idx) => (
+          <span
+            key={idx}
+            className="mx-4 font-mono uppercase font-bold text-xs tracking-widest text-nb-ink flex items-center"
+          >
+            <span className="text-nb-red mr-2 font-black">●</span>
+            {item}
+          </span>
+        ))}
       </div>
     </div>
   );

@@ -1,0 +1,66 @@
+{
+  "section": {
+    "id": "2-bme",
+    "year": 2,
+    "branch": "BME",
+    "label": "Year II - Biomedical Engineering"
+  },
+  "subjects": [
+    { "code": "26BME201", "name": "Sensors and Transducers", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BME202", "name": "Analog Integrated Circuits", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BME203", "name": "Digital Electronics", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BME204", "name": "Biofluid Mechanics", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26MAT205", "name": "Numerical Methods & Statistics", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BML206", "name": "Sensors Laboratory", "type": "LAB", "periodsPerSession": 2 },
+    { "code": "26BML207", "name": "Integrated Circuits Lab", "type": "LAB", "periodsPerSession": 2 }
+  ],
+  "week": {
+    "MON": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME201" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME202" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME203" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME204" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BML206" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26BML206" }
+    ],
+    "TUE": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26MAT205" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME201" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME204" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME202" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BME203" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26MAT205" }
+    ],
+    "WED": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME203" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26MAT205" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME201" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME202" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BML207" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26BML207" }
+    ],
+    "THU": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME204" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME202" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME201" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26MAT205" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BME203" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26BME204" }
+    ],
+    "FRI": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME202" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME203" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME204" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26MAT205" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BME201" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26BME203" }
+    ],
+    "SAT": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME201" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME204" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26MAT205" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME202" }
+    ]
+  },
+  "dayOrderOverrides": []
+}

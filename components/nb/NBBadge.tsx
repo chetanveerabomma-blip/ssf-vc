@@ -3,6 +3,7 @@ import { clsx } from "clsx";
 
 export interface NBBadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: "default" | "green" | "yellow" | "red" | "purple" | "blue" | "gray";
+  status?: string;
   size?: "sm" | "md";
 }
 
@@ -10,9 +11,21 @@ export const NBBadge: React.FC<NBBadgeProps> = ({
   children,
   className,
   variant = "default",
+  status,
   size = "md",
   ...props
 }) => {
+  let resolvedVariant = variant;
+  let resolvedChildren = children;
+
+  if (status) {
+    const s = status.toUpperCase();
+    if (s === "SAFE") resolvedVariant = "green";
+    else if (s === "WARNING" || s === "BORDERLINE") resolvedVariant = "yellow";
+    else if (s === "CRITICAL" || s === "SHORTAGE") resolvedVariant = "red";
+    if (!resolvedChildren) resolvedChildren = status;
+  }
+
   const variantStyles = {
     default: "bg-white text-black border-black",
     green: "bg-[#6BCB77] text-black border-black",
@@ -32,13 +45,13 @@ export const NBBadge: React.FC<NBBadgeProps> = ({
     <span
       className={clsx(
         "inline-flex items-center gap-1 border-2 rounded-[2px] font-mono leading-none shadow-[2px_2px_0px_#0A0A0A]",
-        variantStyles[variant],
+        variantStyles[resolvedVariant],
         sizeStyles[size],
         className
       )}
       {...props}
     >
-      {children}
+      {resolvedChildren}
     </span>
   );
 };

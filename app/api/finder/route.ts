@@ -25,7 +25,7 @@ function checkRateLimit(ip: string): boolean {
 
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get("x-forwarded-for") || req.ip || "127.0.0.1";
+    const ip = req.headers.get("x-forwarded-for") || "127.0.0.1";
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
         { error: "Rate limit reached (30 queries per hour). Please try again later." },

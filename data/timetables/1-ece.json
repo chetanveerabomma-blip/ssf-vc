@@ -1,0 +1,69 @@
+{
+  "section": {
+    "id": "1-ece",
+    "year": 1,
+    "branch": "ECE",
+    "label": "Year I - Electronics & Communication Engineering"
+  },
+  "subjects": [
+    { "code": "26MAT101", "name": "Calculus and Linear Algebra", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26PHY102", "name": "Semiconductor Physics", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26EEE103", "name": "Basic Electrical Engineering", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26CSE104", "name": "Problem Solving Using Python", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26EGR105", "name": "Engineering Graphics & Design", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26PHL106", "name": "Physics Laboratory", "type": "LAB", "periodsPerSession": 2 },
+    { "code": "26CSL107", "name": "Python Programming Laboratory", "type": "LAB", "periodsPerSession": 2 }
+  ],
+  "week": {
+    "MON": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26MAT101" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26PHY102" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26EEE103" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26CSE104" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26PHL106" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26PHL106" }
+    ],
+    "TUE": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26CSE104" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26MAT101" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26PHY102" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26EEE103" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26EGR105" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26EGR105" }
+    ],
+    "WED": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26EEE103" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26CSE104" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26MAT101" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26PHY102" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26CSL107" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26CSL107" }
+    ],
+    "THU": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26MAT101" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26PHY102" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26CSE104" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26EEE103" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26MAT101" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26PHY102" }
+    ],
+    "FRI": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26EEE103" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26MAT101" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26CSE104" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26PHY102" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26CSL107" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26CSL107" }
+    ],
+    "SAT": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26MAT101" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26EEE103" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26PHY102" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26CSE104" }
+    ]
+  },
+  "dayOrderOverrides": [
+    { "date": "2026-09-23", "followsDay": "MON" },
+    { "date": "2026-10-21", "followsDay": "TUE" }
+  ]
+}

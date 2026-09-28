@@ -4,10 +4,11 @@ import { clsx } from "clsx";
 export interface NBInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  helperText?: string;
 }
 
 export const NBInput = React.forwardRef<HTMLInputElement, NBInputProps>(
-  ({ label, error, className, id, ...props }, ref) => {
+  ({ label, error, helperText, className, id, ...props }, ref) => {
     const inputId = id || (label ? label.toLowerCase().replace(/\s+/g, "-") : undefined);
 
     return (
@@ -34,7 +35,11 @@ export const NBInput = React.forwardRef<HTMLInputElement, NBInputProps>(
           )}
           {...props}
         />
-        {error && <p className="mt-1 text-xs font-bold text-[#FF3B30] font-mono">{error}</p>}
+        {error ? (
+          <p className="mt-1 text-xs font-bold text-[#FF3B30] font-mono">{error}</p>
+        ) : helperText ? (
+          <p className="mt-1 text-xs text-gray-600 font-mono">{helperText}</p>
+        ) : null}
       </div>
     );
   }

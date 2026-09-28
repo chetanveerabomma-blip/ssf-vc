@@ -5,6 +5,7 @@ export interface TabItem {
   id: string;
   label: string;
   icon?: React.ReactNode;
+  badge?: number | string;
 }
 
 export interface NBTabsProps {
@@ -36,7 +37,12 @@ export const NBTabs: React.FC<NBTabsProps> = ({
             )}
           >
             {tab.icon && <span>{tab.icon}</span>}
-            {tab.label}
+            <span>{tab.label}</span>
+            {tab.badge !== undefined && (
+              <span className="bg-black text-white text-[10px] px-1.5 py-0.2 rounded-full font-mono">
+                {tab.badge}
+              </span>
+            )}
           </button>
         );
       })}

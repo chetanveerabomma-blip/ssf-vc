@@ -1,0 +1,65 @@
+{
+  "section": {
+    "id": "4-bme",
+    "year": 4,
+    "branch": "BME",
+    "label": "Year IV - Biomedical Engineering"
+  },
+  "subjects": [
+    { "code": "26BME401", "name": "Radiological & Nuclear Medicine Equipment", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BME402", "name": "Neural Engineering & Brain-Computer Interface", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BME403", "name": "Hospital Management & Telemedicine", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BME404", "name": "Rehabilitation Engineering & Assistive Tech", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26BML405", "name": "Telemedicine & Biosignals Lab", "type": "LAB", "periodsPerSession": 2 },
+    { "code": "26PRJ406", "name": "Capstone Project Phase I", "type": "LAB", "periodsPerSession": 3 }
+  ],
+  "week": {
+    "MON": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME401" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME402" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME403" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME404" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BML405" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26BML405" }
+    ],
+    "TUE": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME403" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME401" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME404" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME402" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26PRJ406" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26PRJ406" }
+    ],
+    "WED": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME402" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME404" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME401" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME403" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BME401" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26BME402" }
+    ],
+    "THU": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME404" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME403" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME402" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME401" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26BML405" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26BML405" }
+    ],
+    "FRI": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME401" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME402" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME403" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME404" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26PRJ406" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26PRJ406" }
+    ],
+    "SAT": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26BME402" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26BME401" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26BME404" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26BME403" }
+    ]
+  },
+  "dayOrderOverrides": []
+}

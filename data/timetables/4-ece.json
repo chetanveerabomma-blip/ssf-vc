@@ -1,0 +1,65 @@
+{
+  "section": {
+    "id": "4-ece",
+    "year": 4,
+    "branch": "ECE",
+    "label": "Year IV - Electronics & Communication Engineering"
+  },
+  "subjects": [
+    { "code": "26ECE401", "name": "Wireless & Mobile Communication", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26ECE402", "name": "Optical Fiber Communication", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26ECE403", "name": "Embedded IoT Systems", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26ECE404", "name": "Deep Learning & Computer Vision", "type": "THEORY", "periodsPerSession": 1 },
+    { "code": "26ECL405", "name": "Embedded & IoT Lab", "type": "LAB", "periodsPerSession": 2 },
+    { "code": "26PRJ406", "name": "Capstone Project Phase I", "type": "LAB", "periodsPerSession": 3 }
+  ],
+  "week": {
+    "MON": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE401" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE402" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE403" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE404" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26ECL405" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26ECL405" }
+    ],
+    "TUE": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE403" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE401" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE404" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE402" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26PRJ406" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26PRJ406" }
+    ],
+    "WED": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE402" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE404" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE401" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE403" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26ECE401" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26ECE402" }
+    ],
+    "THU": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE404" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE403" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE402" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE401" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26ECL405" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26ECL405" }
+    ],
+    "FRI": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE401" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE402" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE403" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE404" },
+      { "period": 5, "start": "13:30", "end": "14:20", "subjectCode": "26PRJ406" },
+      { "period": 6, "start": "14:20", "end": "15:10", "subjectCode": "26PRJ406" }
+    ],
+    "SAT": [
+      { "period": 1, "start": "09:00", "end": "09:50", "subjectCode": "26ECE402" },
+      { "period": 2, "start": "09:50", "end": "10:40", "subjectCode": "26ECE401" },
+      { "period": 3, "start": "10:55", "end": "11:45", "subjectCode": "26ECE404" },
+      { "period": 4, "start": "11:45", "end": "12:35", "subjectCode": "26ECE403" }
+    ]
+  },
+  "dayOrderOverrides": []
+}
